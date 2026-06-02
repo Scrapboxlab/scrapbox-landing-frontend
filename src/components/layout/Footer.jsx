@@ -30,8 +30,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-[1.5fr_1fr_1fr_1.2fr] gap-12 md:gap-8">
           {/* Brand */}
           <div>
-            <a href="/" className="select-none flex items-center">
-              <img src="/scrapbox_logo.png" alt="Scrapbox" className="h-10 w-auto object-contain" />
+            <a href="/" className="select-none flex items-center gap-2.5">
+              <span className="text-white font-semibold text-xl tracking-tight">
+                scrap<span className="text-[#EB6700]">box</span>
+              </span>
+              <img src="/scrapbox_logo.png" alt="" className="h-9 w-auto object-contain" />
             </a>
             <p className="text-white/35 text-sm leading-relaxed mt-4 max-w-[200px]">
               Software a medida para empresas que quieren crecer sin limites.
