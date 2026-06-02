@@ -37,8 +37,8 @@ export default function Navbar() {
         )}
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" className="text-white font-semibold text-lg tracking-tight select-none">
-            scrap<span className="text-[#EB6700]">box</span>
+          <a href="/" className="select-none flex items-center">
+            <img src="/scrapbox_logo.png" alt="Scrapbox" className="h-9 w-auto object-contain" />
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
