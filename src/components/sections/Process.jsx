@@ -1,209 +1,141 @@
 import { motion } from 'framer-motion'
-import { MessageCircle, Layers, DollarSign, GitBranch, Rocket } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import clsx from 'clsx'
+import { EASE } from '../ui/FadeIn'
+import { Button } from '../ui/Button'
+import { useModal } from '../../context/ModalContext'
 
 const steps = [
   {
-    number: '01',
-    icon: MessageCircle,
-    title: 'Reunion inicial',
-    desc: 'Escuchamos tu negocio y objetivos en 30 minutos. Sin compromisos.',
+    day: 'Día 0',
+    title: 'Reunión inicial',
+    desc: '30 minutos para entender tu negocio, tu operación y qué necesitás resolver.',
     highlight: false,
   },
   {
-    number: '02',
-    icon: Layers,
-    title: 'Prototipo gratuito',
-    desc: 'Disenamos el primer prototipo funcional. Sin costo.',
+    day: 'Día 3',
+    title: 'Prototipo funcional',
+    desc: 'Te mostramos tu idea funcionando, no un PDF con promesas. Es nuestra forma de cotizar en serio.',
     highlight: true,
-    badge: 'GRATIS',
   },
   {
-    number: '03',
-    icon: DollarSign,
-    title: 'Presupuesto',
-    desc: 'Cotizacion transparente, detallada y sin sorpresas ocultas.',
+    day: 'Día 4',
+    title: 'Cotización cerrada',
+    desc: 'Precio y alcance por escrito sobre lo que ya viste. Sin sorpresas después.',
     highlight: false,
   },
   {
-    number: '04',
-    icon: GitBranch,
+    day: 'Sem. 1–3',
     title: 'Desarrollo iterativo',
-    desc: 'Ciclos cortos con feedback constante. Vos ves el avance.',
+    desc: 'Ciclos cortos con avances visibles cada semana. Vos marcás el rumbo.',
     highlight: false,
   },
   {
-    number: '05',
-    icon: Rocket,
+    day: 'Entrega',
     title: 'Deploy y soporte',
-    desc: 'Lanzamos y acompanamos con soporte continuo post-entrega.',
+    desc: 'Lanzamos juntos y quedamos cerca después de la entrega.',
     highlight: false,
   },
 ]
 
 export default function Process() {
+  const { open } = useModal()
   return (
-    <section id="proceso" className="bg-[#0F1426] py-28 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="proceso" className="bg-[#F7F8FA] py-28 text-[#0F1426]">
+      <div className="max-w-3xl mx-auto px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-20"
+          transition={{ duration: 0.65, ease: EASE }}
+          className="mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] text-[11px] text-white/45 mb-5 tracking-wide">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#EB6700]" />
-            Como trabajamos
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight tracking-tight max-w-lg">
-            De la idea al producto.{' '}
-            <span className="text-white/40">Sin rodeos.</span>
+          <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-[#EB6700] mb-6">
+            Cómo trabajamos
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight">
+            Primero lo ves.
+            <br />
+            <span className="text-[#9CA3AF]">Después decidís.</span>
           </h2>
         </motion.div>
 
-        {/* Desktop: horizontal steps */}
-        <div className="hidden lg:block relative">
-          {/* Connecting line */}
-          <div className="absolute top-9 left-[72px] right-[72px] h-px bg-white/[0.08]" />
-
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.12 } },
-            }}
-            className="grid grid-cols-5 gap-4"
-          >
-            {steps.map((step) => {
-              const Icon = step.icon
-              return (
-                <motion.div
-                  key={step.number}
-                  variants={{
-                    hidden: { opacity: 0, y: 24 },
-                    show: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] },
-                    },
-                  }}
-                  className="flex flex-col items-center text-center"
-                >
-                  {/* Step circle */}
-                  <div
-                    className={clsx(
-                      'relative z-10 w-[72px] h-[72px] rounded-2xl border flex items-center justify-center mb-5 transition-all',
-                      step.highlight
-                        ? 'bg-[#EB6700]/15 border-[#EB6700]/40'
-                        : 'bg-white/[0.04] border-white/[0.1]',
-                    )}
-                  >
-                    <Icon
-                      size={22}
-                      className={step.highlight ? 'text-[#EB6700]' : 'text-white/50'}
-                    />
-                    {step.badge && (
-                      <span className="absolute -top-2 -right-2 bg-[#EB6700] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full tracking-wider">
-                        {step.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="text-white/20 text-xs font-mono mb-2">{step.number}</div>
-                  <h3
-                    className={clsx(
-                      'font-semibold text-[15px] mb-2',
-                      step.highlight ? 'text-white' : 'text-white/80',
-                    )}
-                  >
-                    {step.title}
-                  </h3>
-                  <p className="text-white/35 text-[13px] leading-relaxed">{step.desc}</p>
-                </motion.div>
-              )
-            })}
-          </motion.div>
-        </div>
-
-        {/* Mobile: vertical steps */}
-        <div className="lg:hidden space-y-0">
-          {steps.map((step, i) => {
-            const Icon = step.icon
-            const isLast = i === steps.length - 1
-            return (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.55, delay: i * 0.07, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="flex gap-5"
+        {/* Timeline */}
+        <ol className="relative border-l border-[#E5E7EB] ml-[4.5rem] sm:ml-24">
+          {steps.map((step, i) => (
+            <motion.li
+              key={step.title}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.55, delay: i * 0.06, ease: EASE }}
+              className={clsx('relative pl-8 sm:pl-10', i < steps.length - 1 ? 'pb-12' : '')}
+            >
+              {/* Marcador temporal a la izquierda de la línea */}
+              <span
+                className={clsx(
+                  'absolute -left-[4.5rem] sm:-left-24 top-0.5 w-14 sm:w-[4.75rem] text-right font-mono text-[11px] tracking-wide tabular-nums',
+                  step.highlight ? 'text-[#EB6700] font-semibold' : 'text-[#6B7280]',
+                )}
               >
-                {/* Left: icon + line */}
-                <div className="flex flex-col items-center">
-                  <div
-                    className={clsx(
-                      'w-12 h-12 rounded-xl border flex items-center justify-center flex-shrink-0',
-                      step.highlight
-                        ? 'bg-[#EB6700]/15 border-[#EB6700]/40'
-                        : 'bg-white/[0.04] border-white/10',
-                    )}
-                  >
-                    <Icon
-                      size={18}
-                      className={step.highlight ? 'text-[#EB6700]' : 'text-white/50'}
-                    />
-                  </div>
-                  {!isLast && (
-                    <div className="w-px flex-1 bg-white/[0.07] my-2 min-h-[32px]" />
+                {step.day}
+              </span>
+
+              {/* Punto */}
+              <span
+                aria-hidden="true"
+                className={clsx(
+                  'absolute left-0 top-1.5 -translate-x-1/2 rounded-full',
+                  step.highlight
+                    ? 'w-3 h-3 bg-[#EB6700] ring-4 ring-[#EB6700]/15'
+                    : 'w-2 h-2 bg-[#9CA3AF]',
+                )}
+              />
+
+              <div className="flex flex-wrap items-center gap-3 mb-1.5">
+                <h3
+                  className={clsx(
+                    'font-semibold tracking-tight',
+                    step.highlight ? 'text-xl sm:text-2xl text-[#0F1426]' : 'text-lg text-[#0F1426]',
                   )}
-                </div>
+                >
+                  {step.title}
+                </h3>
+                {step.highlight && (
+                  <span className="bg-[#EB6700] text-white text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider uppercase">
+                    Gratis
+                  </span>
+                )}
+              </div>
+              <p
+                className={clsx(
+                  'leading-relaxed max-w-md',
+                  step.highlight ? 'text-[#485563] text-base' : 'text-[#6B7280] text-[15px]',
+                )}
+              >
+                {step.desc}
+              </p>
+            </motion.li>
+          ))}
+        </ol>
 
-                {/* Right: content */}
-                <div className="pb-8">
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <h3
-                      className={clsx(
-                        'font-semibold text-[15px]',
-                        step.highlight ? 'text-white' : 'text-white/80',
-                      )}
-                    >
-                      {step.title}
-                    </h3>
-                    {step.badge && (
-                      <span className="bg-[#EB6700] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full tracking-wider">
-                        {step.badge}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-white/35 text-sm leading-relaxed">{step.desc}</p>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-
-        {/* Bottom note */}
+        {/* Cierre del nudo */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.65, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mt-16 flex items-center gap-4 p-5 rounded-2xl border border-[#EB6700]/20 bg-[#EB6700]/[0.05]"
+          transition={{ duration: 0.65, delay: 0.2, ease: EASE }}
+          className="mt-16 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8"
         >
-          <div className="w-1 h-12 rounded-full bg-[#EB6700] flex-shrink-0" />
-          <div>
-            <div className="text-white font-semibold text-sm mb-0.5">
-              Primera reunion y prototipo completamente gratis.
-            </div>
-            <div className="text-white/40 text-sm">
-              Sin contrato, sin tarjeta, sin compromiso. Solo traes tu idea.
-            </div>
-          </div>
+          <p className="text-[#485563] text-base leading-relaxed max-w-sm">
+            Si el prototipo no te convence, ahí termina. Sin contrato, sin
+            tarjeta, sin compromiso.
+          </p>
+          <Button className="group flex-shrink-0 w-fit" onClick={open}>
+            Empezar con el prototipo
+            <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Button>
         </motion.div>
       </div>
     </section>

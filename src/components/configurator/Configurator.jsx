@@ -7,7 +7,7 @@ import {
   Lock, CreditCard, Receipt, Headphones, Search, Server,
   Palette, Pen, Zap, BarChart3, Check, Info,
 } from 'lucide-react'
-import { FadeIn } from '../ui/FadeIn'
+import { FadeIn, EASE as ease } from '../ui/FadeIn'
 import { BASE_PROJECTS, MODULES, EXTRAS, IVA_RATE, formatARS } from '../../data/pricing'
 import Summary from './Summary'
 import BudgetModal from './BudgetModal'
@@ -20,7 +20,17 @@ const ICON_MAP = {
   Palette, Pen, Zap, BarChart3,
 }
 
-const ease = [0.21, 0.47, 0.32, 0.98]
+// Activa un elemento con rol de botón vía Enter o Espacio
+const pressableProps = (onActivate) => ({
+  role: 'button',
+  tabIndex: 0,
+  onKeyDown: (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      onActivate()
+    }
+  },
+})
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
@@ -65,6 +75,8 @@ function ProjectCard({ project, selected, onSelect, onDetail }) {
           : 'border-white/[0.07] bg-white/[0.02] hover:border-white/[0.14] hover:bg-white/[0.04]',
       )}
       onClick={() => onSelect(project.id)}
+      aria-pressed={selected}
+      {...pressableProps(() => onSelect(project.id))}
     >
 
       {/* Selected check */}
@@ -97,7 +109,7 @@ function ProjectCard({ project, selected, onSelect, onDetail }) {
           {project.name}
         </div>
 
-        <div className="text-white/35 text-xs leading-relaxed mb-1 line-clamp-2">
+        <div className="text-white/50 text-xs leading-relaxed mb-1 line-clamp-2">
           {project.description}
         </div>
 
@@ -142,6 +154,8 @@ function FeatureCard({ item, selected, onToggle, onDetail }) {
           : 'border-white/[0.07] bg-white/[0.02] hover:border-white/[0.13] hover:bg-white/[0.04]',
       )}
       onClick={() => onToggle(item.id)}
+      aria-pressed={selected}
+      {...pressableProps(() => onToggle(item.id))}
     >
       <div className="flex items-center gap-3">
         {/* Icon */}
@@ -260,15 +274,14 @@ export default function Configurator() {
         {/* Section header */}
         <FadeIn>
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#2A3582]/40 bg-[#2A3582]/10 text-[11px] text-white/45 mb-6 tracking-wide">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#EB6700]" />
+            <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-[#EB6700] mb-6">
               Cotizador interactivo
-            </div>
+            </p>
             <h2 className="text-4xl sm:text-[2.75rem] font-bold text-white tracking-tighter leading-tight mb-4">
               Armá tu solución digital
             </h2>
-            <p className="text-white/45 text-lg max-w-xl mx-auto leading-relaxed">
-              Seleccioná los módulos que necesitás y calculá el precio en tiempo real. Sin compromiso.
+            <p className="text-white/55 text-lg max-w-xl mx-auto leading-relaxed">
+              Seleccioná los módulos que necesitás y mirá el precio en tiempo real. Sin compromiso.
             </p>
           </div>
         </FadeIn>

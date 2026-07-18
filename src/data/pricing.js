@@ -40,7 +40,7 @@ export const BASE_PROJECTS = [
     mediaUrl: null,
     price: 700000,
     monthly: 79900,
-    badge: 'Más elegido',
+    badge: null,
     icon: 'Calendar',
   },
   {
@@ -68,7 +68,7 @@ export const BASE_PROJECTS = [
 ]
 
 export const MODULES = [
-  { id: 'contact-form', name: 'Formulario de contacto ', price: 40000, monthly: 5000, icon: 'MessageSquare', longDescription: 'Formulario de contacto con validaciones, protección anti-spam (reCAPTCHA), notificaciones por email al instante y autorespuesta automática al cliente. Configurable con campos personalizados según tu negocio.', mediaUrl: '/formularioContacto.mp4' },
+  { id: 'contact-form', name: 'Formulario de contacto ', price: 40000, monthly: 5000, icon: 'MessageSquare', longDescription: 'Formulario de contacto con validaciones, protección anti-spam (reCAPTCHA), notificaciones por email al instante y autorespuesta automática al cliente. Configurable con campos personalizados según tu negocio.', mediaUrl: '/Formulario.mp4' },
   { id: 'whatsapp', name: 'Integración WhatsApp', price: 25000, monthly: 7000, icon: 'MessageCircle', longDescription: 'Botón flotante de WhatsApp con mensaje pre-cargado personalizable según la sección de la página. Incluye múltiples números con horarios de atención y enrutamiento inteligente.', mediaUrl: '/wppchat.mp4' },
   { id: 'blog', name: 'Blog / noticias', price: 80000, monthly: 0, icon: 'FileText', longDescription: 'Sistema de blog completo con editor rico, categorías, etiquetas y buscador integrado. Panel para publicar, editar y programar artículos. Optimizado para SEO con meta tags configurables por artículo.', mediaUrl: '/noticias.mp4' },
   { id: 'admin-panel', name: 'Panel administrador', price: 150000, monthly: 5000, icon: 'LayoutDashboard', longDescription: 'Panel privado para gestionar el contenido de tu sitio sin tocar código: textos, imágenes, productos, precios y más. Acceso por usuario y contraseña con roles configurables.', mediaUrl: '/PanelAdmin.mp4' },

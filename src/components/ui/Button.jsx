@@ -20,6 +20,8 @@ export function Button({ variant = 'primary', size = 'md', className, children, 
     <Tag
       className={clsx(
         'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 cursor-pointer select-none',
+        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EB6700]',
+        'disabled:opacity-40 disabled:pointer-events-none disabled:shadow-none',
         variants[variant],
         sizes[size],
         className,

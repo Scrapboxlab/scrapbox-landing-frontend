@@ -7,16 +7,29 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: auto;
+    /* Las anclas quedan debajo de la navbar fija sin esto */
+    scroll-padding-top: 5rem;
   }
 
   body {
     background-color: #0F1426;
     color: #ffffff;
     font-family: 'Inter', system-ui, sans-serif;
+    /* clip (no hidden): evita scroll horizontal sin romper position: sticky */
+    overflow-x: clip;
   }
 
   * {
     box-sizing: border-box;
+  }
+
+  :focus-visible {
+    outline: 2px solid #EB6700;
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: rgba(235, 103, 0, 0.3);
   }
 }
 

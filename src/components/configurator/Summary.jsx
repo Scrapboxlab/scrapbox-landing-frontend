@@ -2,8 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Sparkles, RefreshCw } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { formatARS, CONSULTING_THRESHOLD } from '../../data/pricing'
-
-const ease = [0.21, 0.47, 0.32, 0.98]
+import { EASE as ease } from '../ui/FadeIn'
 
 export default function Summary({ base, activeModules, activeExtras, subtotal, iva, total, monthly, onRequestQuote, canRequest }) {
   const hasBonus = total >= CONSULTING_THRESHOLD

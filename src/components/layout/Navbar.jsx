@@ -6,9 +6,9 @@ import { Button } from '../ui/Button'
 import { useModal } from '../../context/ModalContext'
 
 const links = [
-  { label: 'Servicios', href: '#servicios' },
+  { label: 'Qué hacemos', href: '#servicios' },
   { label: 'Proceso', href: '#proceso' },
-  { label: 'Nosotros', href: '#nosotros' },
+  { label: 'Proyectos', href: '#proyectos' },
   { label: 'Cotizador', href: '#cotizador' },
   { label: 'Contacto', href: '#contacto' },
 ]
@@ -31,7 +31,7 @@ export default function Navbar() {
       <header
         className={clsx(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          scrolled
+          scrolled || mobileOpen
             ? 'bg-[#0F1426]/85 backdrop-blur-xl border-b border-white/[0.07]'
             : 'bg-transparent',
         )}
@@ -41,7 +41,7 @@ export default function Navbar() {
             <span className="text-white font-semibold text-lg tracking-tight">
               scrap<span className="text-[#EB6700]">box</span>
             </span>
-            <img src="/scrapbox_logo.png" alt="" className="h-8 w-auto object-contain" />
+            <img src="/scrapbox_logo_nav.png" alt="" className="h-8 w-auto object-contain" />
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -49,7 +49,7 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-white/55 hover:text-white transition-colors duration-200"
+                className="text-sm text-white/60 hover:text-white transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -58,7 +58,7 @@ export default function Navbar() {
 
           <div className="hidden md:block">
             <Button size="sm" className="gap-1.5" onClick={open}>
-              Solicitar prototipo gratis
+              Prototipo gratis
               <ArrowRight size={14} />
             </Button>
           </div>
@@ -66,7 +66,9 @@ export default function Navbar() {
           <button
             className="md:hidden p-2 -mr-2 text-white/60 hover:text-white transition-colors"
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -77,6 +79,7 @@ export default function Navbar() {
         {mobileOpen && (
           <motion.div
             key="mobile-menu"
+            id="mobile-menu"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -95,7 +98,7 @@ export default function Navbar() {
                 </a>
               ))}
               <Button className="mt-4 w-full" onClick={() => { handleLinkClick(); open() }}>
-                Solicitar prototipo gratis
+                Pedir prototipo gratis
               </Button>
             </div>
           </motion.div>

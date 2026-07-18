@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 
+export const EASE = [0.21, 0.47, 0.32, 0.98]
+
 const directionMap = {
   up: { y: 28, x: 0 },
   down: { y: -28, x: 0 },
@@ -19,7 +21,7 @@ export function FadeIn({ children, delay = 0, direction = 'up', once = true, cla
       transition={{
         duration: 0.65,
         delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
+        ease: EASE,
       }}
       className={className}
     >
@@ -46,7 +48,7 @@ export const staggerItem = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.21, 0.47, 0.32, 0.98],
+      ease: EASE,
     },
   },
 }
